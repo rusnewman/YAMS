@@ -77,6 +77,12 @@
       "default": "1",
       "description":"Difficulty of game, damage and huger effects",
       "name":"Difficulty" },
+	  
+    { "key":"hardcore",
+      "type":"boolean",
+      "default":"true",
+      "description":"f set to true, players will be permanently banned if they die",
+      "name":"Hardcore mode" },
       
     { "key":"motd",
       "type":"string",
@@ -108,5 +114,18 @@
       "type":"boolean",
       "default":"true",
       "description":"Allow querying of server info",
-      "name":"Enable Querying" }      
+      "name":"Enable Querying" },
+	  
+    { "key":"snooper-enabled",
+      "type":"boolean",
+      "default":"true",
+      "description":"Sets whether the server sends snoop data regularly to snoop.minecraft.net",
+      "name":"Enable Official data sharing" },
+	  
+    { "key":"texture-pack",
+      "type":"string",
+      "default":"",
+      "description":"URL to texture pack to offer to clients",
+      "name":"Texture Pack URL" }
+
 ] }
