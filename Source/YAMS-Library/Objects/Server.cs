@@ -160,6 +160,7 @@ namespace YAMS
             {
                 var strArgs = "";
                 var strFileName = YAMS.Util.JavaPath() + "java.exe";
+                if (YAMS.Util.HasJDK()) strFileName = YAMS.Util.JavaPath("jdk") + "java.exe";
 
                 if (File.Exists(this.strWorkingDir + "args.txt"))
                 {
@@ -172,12 +173,11 @@ namespace YAMS
                 {
                     //If we have enabled the java optimisations add the additional
                     //arguments. See http://www.minecraftforum.net/viewtopic.php?f=1012&t=68128
-                    if (bolEnableJavaOptimisations && YAMS.Util.HasJDK())
+                    if (bolEnableJavaOptimisations)
                     {
                         var intGCCores = Environment.ProcessorCount - 1;
                         if (intGCCores == 0) intGCCores = 1;
                         strArgs += "-server -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSIncrementalPacing -XX:ParallelGCThreads=" + intGCCores + " -XX:+AggressiveOpts";
-                        strFileName = YAMS.Util.JavaPath("jdk") + "java.exe";
                     }
 
                     //Some specials for bukkit
