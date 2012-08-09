@@ -66,7 +66,7 @@
       
     { "key":"gamemode",
       "type":"array",
-      "values":"0|Survival,1|Creative",
+      "values":"0|Survival,1|Creative,2|Adventure",
       "default": "0",
       "description":"Game mode for the server; Survival or Creative",
       "name":"Game Mode" },
@@ -98,7 +98,7 @@
 
     { "key":"level-type",
       "type":"array",
-      "values": "DEFAULT|Normal,FLAT|Flat",
+      "values": "DEFAULT|Normal,FLAT|Flat,LARGEBIOMES|Large Biomes",
       "default": "DEFAULT",
       "description":"Type of world generation",
       "name":"Level Type" },
