@@ -39,6 +39,7 @@ namespace YAMS.Web
             Regex regServerHome = new Regex(@"^/servers/([0-9]+)/$");
             Regex regServerGMap = new Regex(@"^/servers/([0-9]+)/map/");
             Regex regServerRenders = new Regex(@"^/servers/([0-9]+)/renders/");
+            Regex regServerAPI = new Regex(@"^/servers/([0-9]+)/api/");
 
             if (regServerGMap.Match(context.Request.Uri.AbsolutePath).Success || regServerRenders.Match(context.Request.Uri.AbsolutePath).Success)
             {
@@ -156,6 +157,35 @@ namespace YAMS.Web
                     dicTags.Add("ClientURL", strClientURL);
                     dicTags.Add("PlayersOnline", strPlayers);
                     dicTags.Add("PageBody", "Some blurb about the server, probably including some <em>HTML</em>");
+                }
+                else if (regServerAPI.Match(context.Request.Uri.AbsolutePath).Success)
+                {
+                    string strResponse = "";
+                    IParameterCollection param = context.Request.Parameters;
+                    Match matServerAPI = regServerAPI.Match(context.Request.Uri.AbsolutePath);
+                    int intServerID = Convert.ToInt32(matServerAPI.Groups[1].Value);
+                    MCServer s = Core.Servers[intServerID];
+                    switch (context.Request.Parameters["action"])
+                    {
+                        case "players":
+                            strResponse = "{\"players\" : [";
+                            if (s.Players.Count > 0)
+                            {
+                                foreach (KeyValuePair<string, Objects.Player> kvp in s.Players)
+                                {
+                                    Vector playerPos = kvp.Value.Position;
+                                    strResponse += " { \"name\": \"" + kvp.Value.Username + "\", " +
+                                                      "\"level\": \"" + kvp.Value.Level + "\", " +
+                                                      "\"x\": \"" + playerPos.x.ToString("0.##") + "\", " +
+                                                      "\"y\": \"" + playerPos.y.ToString("0.##") + "\", " +
+                                                      "\"z\": \"" + playerPos.z.ToString("0.##") + "\" },";
+                                };
+                                strResponse = strResponse.Remove(strResponse.Length - 1);
+                            }
+                            strResponse += "]}";
+                            break;
+                    }
+                    strTemplate = strResponse;
                 }
                 else
                 {
