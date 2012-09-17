@@ -49,6 +49,12 @@
 	  "default":"false",
 	  "description":"Allow the use of flight and speed mods",
 	  "name":"Allow Flight/Speed hacks" },
+
+	{ "key":"allow-nether",
+	  "type":"boolean",
+	  "default":"true",
+	  "description":"Allows players to travel to the Nether",
+	  "name":"Allow Nether" },
 	  
 	{ "key":"view-distance",
 	  "type":"integer",
