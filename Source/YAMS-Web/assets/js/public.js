@@ -5,15 +5,19 @@
 
 function getStats() {
     $.ajax({
-        url: "http://yams.in/ping-server.php",
+        url: "http://richardbenson.co.uk/yams/ping-server.php",
         data: "host=" + $('#server-host').val() + "&port=" + $('#server-port').val(),
         dataType: "JSONP",
         success: function (data) {
             if (data) {
-                $('#server-status').html('<div class="alert alert-info">' + data.motd + '</div>' +
-                                         '<span class="label label-success">Online</span> ' + data.players + '/' + data.max_players + ' players online.');
+				$("#status-alert strong").html("Online");
+				$("#status-alert span").html(" with "+data.players+" of "+data.max_players+" players in the world.");
+				$("#status-alert").removeClass("alert-info").addClass("alert-success");
+				
             } else {
-                $('#server-status').html('<span class="label label-important">OFFLINE</span>');
+				
+				$("#status-alert strong").html("Offline");
+				$("#status-alert").removeClass("alert-info").addClass("alert-danger");
             }
         }
     });

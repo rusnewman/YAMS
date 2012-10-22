@@ -15,17 +15,20 @@
     <!-- Le styles -->
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
+		html {
+			overflow-y: scroll;
+		}
+		body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
     </style>
     <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
   </head>
 
   <body>
-
+	<!--
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -38,17 +41,36 @@
           <div class="nav-collapse">
             <ul class="nav">
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
     </div>
-
+	-->
     <div class="container">
-
-      This server is running <a href="http://yams.in/" target="_blank">Yet Another Minecraft Server</a> to manage their Minecraft and community experience.
-      YAMS is free to download for personal use. Try it for your server!<br /><br />
-      <a href="/servers/">Click here to see all the servers on this YAMS install</a>
-
+		<div class="row">
+			<div class="span3">
+				<div class="well"><h1>YAMS</h1></div>
+				<div class="well" style="max-width: 340px; padding: 8px 0;">
+					<ul class="nav nav-list">
+						<li class="active"><a href="/"><i class="icon-home"></i> YAMS Home</a></li>
+						<li><a href="/servers/"><i class="icon-globe"></i> Worlds Page</a></li>
+						<li class="nav-header">Worlds</li>
+						<li><a href="/servers/1/">Choccyworld</a></li>
+						<li><a href="/servers/2/">Experiland</a></li>
+						<li><a href="/servers/3/">Kempoworld</a></li>
+						{?Y:ServerList?}
+					</ul>
+				</div>
+			</div>
+			<div class="span8">
+				<p>This server is running <a href="http://yams.in/" target="_blank">Yet Another Minecraft Server</a> to manage their Minecraft and community experience. YAMS is free to download for personal use. Try it for your server!</p>
+				<p><a href="/servers/">Click here to see all the servers on this YAMS install</a></p>
+				<h3>Russell's Notes</h3>
+				<p>I propose scrapping this page and replacing it with the servers index that you otherwise get at /servers/.</p>
+				<p>These pages are a draft, and I'll have to dig around in the webserver components (I think) to do more. I've removed the navbar for now, and replaced it with a vertical navbox. The YAMS header is a placeholder, and the overviewer iframe is a quick+dirty hack, just to test the idea of embedding the map.</p>
+				<p>{ ?Y:ServerList?} will need to be adapted to build the menu in the right way. However, if I do more work on this, I may (with permission!) adapt the YAMS web server to output to JSON and build the page using javascript, for greater flexibility. Or I could use the API, depending on what it supports!</p>
+			</div>
+		</div>
     </div> <!-- /container -->
 
   </body>
